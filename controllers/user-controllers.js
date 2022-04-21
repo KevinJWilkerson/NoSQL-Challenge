@@ -1,7 +1,7 @@
+const req = require("express/lib/request");
 const { User, Thought } = require("../models");
 
 const userController = {
-  // get all Users
   getAllUsers(req, res) {
     User.find({})
       .populate({
