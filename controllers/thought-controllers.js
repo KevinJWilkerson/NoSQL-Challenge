@@ -24,7 +24,7 @@ const thoughtController = {
     Thought.create(body)
       .then(({ _id }) => {
         return User.findOneAndUpdate(
-          { _id: params.userId },
+          { _id: body.userId },
           { $push: { thoughts: _id } },
           { new: true, runValidators: true }
         );
@@ -79,7 +79,7 @@ const thoughtController = {
       .select("-__v")
       .then((dbThoughtData) => {
         if (!dbThoughtData) {
-          res.status(404).json({ message: "No thoughts in this mind homie" });
+          res.status(404).json({ message: "No thought with this id." });
           return;
         }
         res.json(dbThoughtData);
